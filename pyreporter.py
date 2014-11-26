@@ -511,9 +511,9 @@ class Report(object):
                 fname=filename,**kwargs)
 
 
-    def add_plot(self, generator=lambda: None, widthratio=None,
-            heightratio=None, width=None, height=None, fig=None, frmt='pdf',
-            name=None, force=False, close_fig=False, **kwargs):
+    def add_plot(self, fig, widthratio=None, heightratio=None, width=None,
+            height=None, frmt='pdf', name=None, force=False,
+            after_plotting=lambda: None, **kwargs):
         """ Add a matplotlib plot to the report.
 
         This function wraps the 'make_plot' function and saves the result to
@@ -521,9 +521,9 @@ class Report(object):
             
         See documentation of make_plot for parameter descriptions.
         """
-        self.f.write(self.make_plot(generator=generator, widthratio=widthratio,
-            heightratio=heightratio, width=width, height=height, fig=fig,
-            frmt=frmt, name=name, force=force, close_fig=close_fig, **kwargs))
+        self.f.write(self.make_plot(fig, widthratio=widthratio,
+            heightratio=heightratio, width=width, height=height, frmt=frmt,
+            name=name, force=force, after_plotting=after_plotting, **kwargs))
 
     def add_equation(self, content):
         """Adds an equation to the report.
